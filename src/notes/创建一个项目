@@ -1,0 +1,48 @@
+1、安装react
+ (1) 安装脚手架 create-react-app
+    npm install -g create-react-app
+ (2) 创建项目
+    create-react-app my-app(项目名)
+ (3) 启动项目
+    cd my-app 
+    npm start --启动服务器
+
+2、提交到远程仓库
+ (1) 创建一个远程仓库
+    your repositories->new->输入name
+    ->得到远程地址git@github.com:cicionly/model.git
+ (2) 在当前项目下创建仓库
+    git init
+    仓库级别：
+　　　　git config user.name xxx
+　　　　git config user.email xxx@xxx.com
+　　系统用户级别：
+　　　　git config --global user.name xxx
+　　　　git config --global user.email xxx@xxx.com
+　　仓库级别签名保存在 grpc007/.git /config 文件。系统用户级别签名保存在 C:\Users\win系统用户名\.gitconfig 文件。
+ (3) 创建SSH Key，建立本地Git仓库和GitHub仓库之间的传输的秘钥
+    (a) 公钥
+       ssh-keygen -t rsa -C 'your email'     //创建SSH Key
+       登录GitHub账号并打开settings
+       ->打开“SSH and GPG keys”页签
+       ->然后点击“new key”
+       ->随便输入一个Title名字，然后打开id_rsa.pub文件(一般在C盘的.ssh文件夹下)
+       ->把文件内容复制到key的输入框中，保存
+       至此公钥设置完成。
+    (b) 私钥
+       打开git bash窗口，执行命令“ssh -T git@github.com”
+       ->然后输入yes
+       ->successfully
+       至此本地私钥设置完成。
+ (4) 将本地仓库内容传输到远程仓库
+    (a) 创建新的仓库提交
+       git add . 将修改的文件添加到缓存
+       git commit -m "first commit"
+       git remote add origin git@github.com:cicionly/model.git //推送到远程仓库
+       git push -u origin master //第一次把当前分支master推送到远程，-u参数不但推送，而且将本地的分支和远程的分支关联起来
+    (b) 将本地仓库内容推送到已有的远程仓库  
+       git remote add origin git@github.com:cicionly/model.git
+       git push -u origin master 
+    (c) 从远程仓库克隆一个项目
+       git clone git@github.com:username/repostery.git                            //从远程库克隆一个到本地库
+    

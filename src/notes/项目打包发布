@@ -1,0 +1,24 @@
+环境的打包与发布：
+1、打包
+ （1）git pull               更新分支，解决冲突
+ （2）git checkout master    切换到master分支 （线上环境）
+ （3）git merge release      将release分支合并到master分支上
+    可能遇到的error：
+      error: Merging is not possible because you have unmerged files.  
+      fatal: Exiting because of an unresolved conflict.
+    原因及解决方案：冲突没有完全解决，查看文件中是否还有冲突 
+    注意事项：解决冲突时，public目录下的冲突解决选择（accept current）接受当前。index.jsx类型文件选择（accept incoming）接受修改后的。
+             其他文件尽量选择accept current；根据vscode右侧提示快捷找到冲突所在位置，打开工具图标查看冲突文件。
+ （4）git status          查看是否仍然存在冲突文件
+ （5）git add . -> git commit -m "说明"    解决冲突后提交没有冲突后的项目
+ （6）yarn build   打包文件
+  (7) git add . -> git commit -m "说明"  -> git push
+
+2、发布
+  # jenkins地址
+    # prod环境：http://jenkins-dev.niub.la:8080/view/datacenter%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BA%BF%E4%B8%8A%E6%AD%A3%E5%BC%8F/job/online-stable-datacenter-DCWEBDispatcher/
+     a. 打开网址
+     b. 点击Build with Parameters按钮 ->build，revision不用修改
+    # pre环境：http://jenkins-dev.niub.la:8080/view/datacenter%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BA%BF%E4%B8%8A%E6%B5%8B%E8%AF%95/job/online-dev-datacenter-DCWEBDispatcher/
+     a. 打开网址
+     b. 点击Build with Parameters按钮 ->build，revision：输入release
